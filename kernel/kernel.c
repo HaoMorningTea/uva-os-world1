@@ -33,6 +33,7 @@ void kernel_main() {
 	enable_interrupt_controller(0);     // coreid
 	// quest: sys_timer irq
 	/* STUDENT_TODO: your code here */
+	enable_irq();                       // enable irq
 
 	generic_timer_init();               // periodic ticks alive
 
@@ -45,6 +46,7 @@ void kernel_main() {
 	// quest: pixel donut. call donut_simple()
 	/* to enable it,  irq handler must be modified to call sys_timer_irq_simple() */
 	/* STUDENT_TODO: your code here */
+	donut_simple();
 	
 	// quest: textual donut. call donut_text()
 	/* STUDENT_TODO: your code here */

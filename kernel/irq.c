@@ -87,6 +87,7 @@ void handle_irq(void) {
         }        
         if (p1 & SYSTEM_TIMER_IRQ_1) {
             /* STUDENT_TODO: your code here */
+            sys_timer_irq_simple(); // to drive the pixel donut
             p1 &= (~SYSTEM_TIMER_IRQ_1);
         }
         if (p1) {
