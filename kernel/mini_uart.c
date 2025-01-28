@@ -52,8 +52,14 @@ void uart_send (char c) {
 	while(1) {
         // read the status reg to check if the tx fifo is empty
 			/* STUDENT_TODO: your code here */
+        // Check if transmitter can accept data (bit 5 => 0x20 is set)
+        if (get32(AUX_MU_LSR_REG) & 0x20) {
+            break;
+        }
 	}
 	/* STUDENT_TODO: your code here */
+    // Write the character to the Mini UART IO register
+    put32(AUX_MU_IO_REG, c);
 }
  
 // busy wait until get a char 

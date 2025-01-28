@@ -21,8 +21,11 @@ struct cpu cpus[NCPU];
 void kernel_main() {
 	// quest: UART. call uart_init() to initialize
 	/* STUDENT_TODO: your code here */
+	uart_init();
 	// quest: UART. init printf by init_printf(NULL, XXX)
 	/* STUDENT_TODO: your code here */
+	init_printf(NULL, putc);
+	
 	printf("------ kernel boot ------  core %d\n\r", cpuid());
 	printf("build time (kernel.c) %s %s\n", __DATE__, __TIME__); // simplicity 
 

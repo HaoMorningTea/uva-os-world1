@@ -36,7 +36,7 @@ qemu_mon() {
     #### qemuv8 monitor
     ${QEMU} -M raspi3b \
     -kernel ${KERNEL} -monitor stdio -serial null \
-    -d int -D qemu.log \
+    # -d int -D qemu.log \
     -nographic \
     -usb -device usb-kbd
 }    
@@ -45,14 +45,14 @@ qemu_mon() {
 qemu_min () {
     ${QEMU} -M raspi3b \
     -kernel ${KERNEL} -serial null -serial mon:stdio -nographic \
-    -d int -D qemu.log 
+    # -d int -D qemu.log 
 }    
 
 ### qemu v8, no grahpics, no kb, with sd
 qemu_small () {
     ${QEMU} -M raspi3b \
     -kernel ${KERNEL} -serial null -serial mon:stdio \
-    -d int -D qemu.log \
+    # -d int -D qemu.log \
     -smp 4 \
     -nographic \
     -drive file=smallfat.bin,if=sd,format=raw
@@ -62,7 +62,7 @@ qemu_small () {
 qemu_full () {
     ${QEMU} -M raspi3b \
     -kernel ${KERNEL} -serial null -serial mon:stdio \
-    -d int -D qemu.log
+    # -d int -D qemu.log
     # -usb -device usb-kbd \
     # -drive file=smallfat.bin,if=sd,format=raw    # SD 
 }
