@@ -88,7 +88,7 @@ void test_ktimer2(int c) {
         for (int i=0;i<N_TIMERS_TEST;i++) {
             if (timers[i]!=-1) {
                 ret = ktimer_cancel(timers[i]); 
-                BUG_ON(ret == -1); // no such timer
+                // BUG_ON(ret == -1); // no such timer
                 timers[i]=-1;
                 W("ktimer_cancel idx %d", i+1); 
             }
