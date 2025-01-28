@@ -39,14 +39,15 @@ void kernel_main() {
 
 	if (fb_init() != 0) BUG();          // will show the OS logo
 
-	// test_ktimer();
+	test_ktimer();
 	// test_fb_voffset();               // cycle through color quads
 	/* STUDENT_TODO: your code here */
 
 	// quest: pixel donut. call donut_simple()
 	/* to enable it,  irq handler must be modified to call sys_timer_irq_simple() */
 	/* STUDENT_TODO: your code here */
-	donut_simple();
+	//donut_simple();
+	donut(); //Quest11
 	
 	// quest: textual donut. call donut_text()
 	/* STUDENT_TODO: your code here */
