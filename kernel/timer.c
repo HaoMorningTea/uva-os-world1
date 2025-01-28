@@ -97,7 +97,14 @@ unsigned long current_counter() {
 	// quest: textual donut. 
 	// read from TIMER_CHI and TIMER_CLO and return a 64bit counter
 	// (assume these two are consistent, since the clock is only 1MHz)
-return 0; /* STUDENT_TODO: replace this */
+	//return 0; /* STUDENT_TODO: replace this */
+	// Lower 32 bits
+    unsigned long lo = get32(TIMER_CLO);
+    // Upper 32 bits
+    unsigned long hi = get32(TIMER_CHI);
+    // Combine to form a 64-bit timer count
+    unsigned long val = (hi << 32) | lo;
+    return val;
 }
 
 ////////////  delay, timekeeping 
@@ -135,12 +142,16 @@ static void sys_timer_tune_delay() {
 void ms_delay(unsigned ms) {
 	BUG_ON(!cycles_per_ms);
 	/* STUDENT_TODO: your code here */
+	unsigned long num_cycles = (unsigned long)ms * cycles_per_ms;
+    delay(num_cycles);
 }
 
 // quest: textual donut. implement by calling delay()
 void us_delay(unsigned us) {
 	BUG_ON(!cycles_per_us);
 	/* STUDENT_TODO: your code here */
+	unsigned long num_cycles = (unsigned long)us * cycles_per_us;
+    delay(num_cycles);
 }
 
 // can only be called after va is on, timers are init'd

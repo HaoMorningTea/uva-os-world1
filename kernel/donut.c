@@ -184,7 +184,7 @@ void donut_text(void) {
                     x5 = sA * sj >> 10,
                     x6 = K2 + R1 * 1024 * x5 + cA * x3,
                     x7 = cj * si >> 10,
-                    x = 25 + 30 * (cB * x1 - sB * x4) / x6,
+                    x = 25 + 60 * (cB * x1 - sB * x4) / x6,//adjusted to 60 since donut looks tall
                     y = 12 + 15 * (cB * x4 + sB * x1) / x6,
                     N = (((-cA * x7 - cB * ((-sA * x7 >> 10) + x2) - ci * (cj * sB >> 10)) >> 10) - x5) >> 7;
 

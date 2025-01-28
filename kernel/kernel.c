@@ -48,6 +48,7 @@ void kernel_main() {
 	
 	// quest: textual donut. call donut_text()
 	/* STUDENT_TODO: your code here */
+	donut_text();
 
 	while (1)
 		asm volatile("wfi");            // what happen here?
