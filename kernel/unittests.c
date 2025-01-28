@@ -153,42 +153,66 @@ void test_fb_voffset() {
 
     if (fb_init() != 0) BUG();     
 
-    // prefill the fb with four color tiles, once 
-    PIXEL b=0x00ff0000, g=0x0000ff00, r=0x000000ff; 
-    int x, y;
-    int pitch = the_fb.pitch; 
-    for (y=0;y<N;y++)
-        for (x=0;x<N;x++)
-            setpixel(the_fb.fb,x,y,pitch,r); 
+    // // prefill the fb with four color tiles, once 
+    // PIXEL b=0x00ff0000, g=0x0000ff00, r=0x000000ff; 
+    // int x, y;
+    // int pitch = the_fb.pitch; 
+    // for (y=0;y<N;y++)
+    //     for (x=0;x<N;x++)
+    //         setpixel(the_fb.fb,x,y,pitch,r); 
 
-    for (y=0;y<N;y++)
-        for (x=N;x<2*N;x++)
-            setpixel(the_fb.fb,x,y,pitch,(b|r));             
+    // for (y=0;y<N;y++)
+    //     for (x=N;x<2*N;x++)
+    //         setpixel(the_fb.fb,x,y,pitch,(b|r));             
 
-    for (y=N;y<2*N;y++)
-        for (x=0;x<N;x++)
-            setpixel(the_fb.fb,x,y,pitch,g); 
+    // for (y=N;y<2*N;y++)
+    //     for (x=0;x<N;x++)
+    //         setpixel(the_fb.fb,x,y,pitch,g); 
 
-    for (y=N;y<2*N;y++)
-        for (x=N;x<2*N;x++)
-            setpixel(the_fb.fb,x,y,pitch,b);             
+    // for (y=N;y<2*N;y++)
+    //     for (x=N;x<2*N;x++)
+    //         setpixel(the_fb.fb,x,y,pitch,b);             
 
     // // test --- fill all quads the same color
     // for (y=0;y<2*N;y++)
     //     for (x=0;x<2*N;x++)
-    //         setpixel(the_fb.fb,x,y,pitch,b);             
+    //         setpixel(the_fb.fb,x,y,pitch,b);     
+
+    // Define some colors
+    PIXEL colors[] = {0x00FF0000,  // Red
+                      0x0000FF00,  // Green
+                      0x000000FF,  // Blue
+                      0x00000000}; // Black
+    int num_colors = sizeof(colors) / sizeof(colors[0]);
+
+    // Cycle through colors
+    int i = 0;
+    while (1) {
+        // Fill the entire framebuffer with the current color
+        for (int y = 0; y < the_fb.height; y++) {
+            for (int x = 0; x < the_fb.width; x++) {
+                setpixel(the_fb.fb, x, y, the_fb.pitch, colors[i]);
+            }
+        }
+
+        // Move to the next color
+        i = (i + 1) % num_colors;
+
+        // Wait for a while
+        ms_delay(1500);
+    }       
 
     //what if we dont flush cache?
     // __asm_flush_dcache_range(the_fb.fb, the_fb.fb + the_fb.size); 
 
-    while (1) {
-        fb_set_voffsets(0,0);
-        ms_delay(1500); 
-        fb_set_voffsets(0,N);
-        ms_delay(1500); 
-        fb_set_voffsets(N,0);
-        ms_delay(1500); 
-        fb_set_voffsets(N,N);
-        ms_delay(1500); 
-    }
+    // while (1) {
+    //     fb_set_voffsets(0,0);
+    //     ms_delay(1500); 
+    //     fb_set_voffsets(0,N);
+    //     ms_delay(1500); 
+    //     fb_set_voffsets(N,0);
+    //     ms_delay(1500); 
+    //     fb_set_voffsets(N,N);
+    //     ms_delay(1500); 
+    // }
 }

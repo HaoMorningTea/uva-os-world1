@@ -40,7 +40,7 @@ void kernel_main() {
 	if (fb_init() != 0) BUG();          // will show the OS logo
 
 	test_ktimer();
-	// test_fb_voffset();               // cycle through color quads
+	test_fb_voffset();               // cycle through color quads
 	/* STUDENT_TODO: your code here */
 
 	// quest: pixel donut. call donut_simple()
